@@ -11,11 +11,15 @@ package trabajopractico5;
  */
 public class AgregarContactoVista extends javax.swing.JInternalFrame {
 
+     DirectorioTelefonico directorio = new DirectorioTelefonico();
+   
     /**
      * Creates new form AgregarContactoVista
      */
     public AgregarContactoVista() {
         initComponents();
+         JCCiudad.addItem("San Luis");
+         JCCiudad.addItem("Justo Daract");
     }
 
     /**
@@ -96,7 +100,6 @@ public class AgregarContactoVista extends javax.swing.JInternalFrame {
         });
 
         JCCiudad.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        JCCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JCCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCCiudadActionPerformed(evt);
@@ -180,23 +183,35 @@ public class AgregarContactoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JTDNIActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        dispose();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarActionPerformed
-                
+        
         
         int auxDni = Integer.parseInt(JTDNI.getText());
         String auxApellido = JTApellido.getText();
         String auxNombre = JTNombre.getText();
+        String auxCiudad = JCCiudad.getSelectedItem().toString();
+        String auxDomicilio = JTDomicilio.getText();
+        Long auxNumero = Long.parseLong(JTTelefono.getText());
+        
+        directorio.agregarContacto(auxDni, auxNombre, auxCiudad, auxDomicilio, auxNumero,auxApellido);
+        
+        JTDNI.setText("");
+        JTApellido.setText("");
+        JTNombre.setText("");
+        JTDomicilio.setText("");
+       JTTelefono.setText("");
         
                         // TODO add your handling code here:
     }//GEN-LAST:event_JBGuardarActionPerformed
 
     private void JCCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCCiudadActionPerformed
                     
-            JCCiudad.addItem("San Luis");
-            JCCiudad.addItem("Justo Daract");
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JCCiudadActionPerformed

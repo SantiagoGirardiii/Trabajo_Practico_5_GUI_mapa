@@ -13,22 +13,41 @@ import java.util.TreeMap;
  */
 public class DirectorioTelefonico {
     
-    TreeMap<Long,Contacto> ListaDeContactos = new TreeMap<>();
+    public static TreeMap<Long,Contacto> ListaDeContactos = new TreeMap<>();
+
+    public DirectorioTelefonico() {
+    }
+
+    public void setListaDeContactos(TreeMap<Long, Contacto> ListaDeContactos) {
+        this.ListaDeContactos = ListaDeContactos;
+    }
+
+    public static TreeMap<Long, Contacto> getListaDeContactos() {
+        return ListaDeContactos;
+    }
     
-    public void agregarContacto(int dni,String nombre,String ciudad,String direccion,Long numero){
+    
+    
+    public void agregarContacto(int dni,String nombre,String ciudad,String direccion,Long numero,String apellido){
         
-        Contacto contacto = new Contacto(dni,nombre,ciudad,direccion);
-        
+        Contacto contacto = new Contacto(dni,nombre,ciudad,direccion,apellido);
         ListaDeContactos.put(numero, contacto);
         
     };
     
-    public void buscarContacto(){};
+    public void buscarContacto(){
+        
+    };
     
     public void buscarTelefono(){};
     
     public void buscarContactos(){};
     
-    public void borrarContacto(){};
+    public void borrarContacto(
+            
+            
+            
+            
+    ){};
     
 }

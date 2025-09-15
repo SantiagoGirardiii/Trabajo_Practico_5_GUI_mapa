@@ -11,6 +11,7 @@ package trabajopractico5;
  */
 public class Principal extends javax.swing.JFrame {
 
+    DirectorioTelefonico directorio = new DirectorioTelefonico();
     /**
      * Creates new form Principal
      */
@@ -66,9 +67,19 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(JMAgregarContacto);
 
         jMenuItem1.setText("Buscar Cliente");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Borrar Cliente");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -116,6 +127,28 @@ public class Principal extends javax.swing.JFrame {
             
             // TODO add your handling code here:
     }//GEN-LAST:event_JMAgregarContactoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+            Escritorio.removeAll();
+            Escritorio.repaint();
+            BuscarClienteVista BCV =  new BuscarClienteVista();
+            BCV.setVisible(true);
+            Escritorio.add(BCV);
+            Escritorio.moveToFront(BCV);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+            
+            Escritorio.removeAll();
+            Escritorio.repaint();
+            BorrarClienteVista BCVi = new BorrarClienteVista();
+            BCVi.setVisible(true);
+            Escritorio.add(BCVi);
+            Escritorio.moveToFront(BCVi);   // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

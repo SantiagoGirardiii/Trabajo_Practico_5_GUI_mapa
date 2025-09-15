@@ -15,12 +15,22 @@ public class Contacto {
     private String nombre;
     private String ciudad;
     private String direccion;
+    private String apellido;
 
-    public Contacto(int DNI, String nombre, String ciudad, String direccion) {
+    public Contacto(int DNI, String nombre, String ciudad, String direccion , String apellido) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.direccion = direccion;
+        this.apellido = apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getApellido() {
+        return apellido;
     }
 
     public int getDNI() {

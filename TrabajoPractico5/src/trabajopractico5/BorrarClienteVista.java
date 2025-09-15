@@ -5,17 +5,24 @@
  */
 package trabajopractico5;
 
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author santiago10
  */
 public class BorrarClienteVista extends javax.swing.JInternalFrame {
+    
+    private DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * Creates new form BorrarClienteVista
      */
     public BorrarClienteVista() {
         initComponents();
+        armarCabecera();
     }
 
     /**
@@ -31,12 +38,12 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        JTFBODNI = new javax.swing.JTextField();
+        JTFBOMostrar = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        JTBOMostar = new javax.swing.JTable();
+        JBBorrarCliente = new javax.swing.JButton();
+        JTBBOSalir = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -46,15 +53,25 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Borrar Cliente");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        JTFBODNI.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                JTFBODNICaretUpdate(evt);
+            }
+        });
+        JTFBODNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                JTFBODNIActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("jTextField2");
+        JTFBOMostrar.setEditable(false);
+        JTFBOMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTFBOMostrarMouseClicked(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTBOMostar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,11 +82,26 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        JTBOMostar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTBOMostarMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(JTBOMostar);
 
-        jButton1.setText("Borrar Cliente/s");
+        JBBorrarCliente.setText("Borrar Cliente/s");
+        JBBorrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBBorrarClienteActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Salir");
+        JTBBOSalir.setText("Salir");
+        JTBBOSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTBBOSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,16 +114,16 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(jTextField1))
+                            .addComponent(JTFBOMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                            .addComponent(JTFBODNI))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 8, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
-                        .addComponent(jButton1)
+                        .addComponent(JBBorrarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(JTBBOSalir)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(204, 204, 204)
@@ -105,36 +137,103 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTFBODNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTFBOMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(JBBorrarCliente)
+                    .addComponent(JTBBOSalir))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void JTFBODNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFBODNIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_JTFBODNIActionPerformed
+
+    private void JTFBODNICaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_JTFBODNICaretUpdate
+            
+            String auxDni = JTFBODNI.getText();
+            
+            if(!auxDni.isEmpty()){
+                for(Map.Entry<Long,Contacto> entry : DirectorioTelefonico.ListaDeContactos.entrySet() ){
+                    if(String.valueOf(entry.getValue().getDNI()).startsWith(auxDni)){
+                      JTFBOMostrar.setText(String.valueOf(entry.getValue().getDNI()));
+                      break;
+                    }
+                } 
+            }else{
+                JTFBOMostrar.setText("");
+            }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFBODNICaretUpdate
+
+    private void JTBOMostarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTBOMostarMouseClicked
+                // TODO add your handling code here:
+    }//GEN-LAST:event_JTBOMostarMouseClicked
+
+    private void JTFBOMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTFBOMostrarMouseClicked
+                
+            int auxDni = Integer.parseInt(JTFBODNI.getText());
+            
+            for(Map.Entry<Long,Contacto> entry : DirectorioTelefonico.ListaDeContactos.entrySet()){
+                if(auxDni == entry.getValue().getDNI()){
+                    modelo.addRow(new Object[]{entry.getValue().getDNI(),entry.getValue().getApellido(),
+                        entry.getValue().getNombre(),entry.getValue().getDireccion(),entry.getValue().getDireccion()
+                            ,entry.getKey()});
+                }
+            }
+            
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFBOMostrarMouseClicked
+
+    private void JBBorrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBBorrarClienteActionPerformed
+            
+            Long auxNumero = (Long) JTBOMostar.getValueAt(0, 5);
+            
+            DirectorioTelefonico.ListaDeContactos.remove(auxNumero);
+            
+            JOptionPane.showMessageDialog(this, "Elemento Eliminado");
+                // TODO add your handling code here:
+    }//GEN-LAST:event_JBBorrarClienteActionPerformed
+
+    private void JTBBOSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTBBOSalirActionPerformed
+        dispose();                    // TODO add your handling code here:
+    }//GEN-LAST:event_JTBBOSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton JBBorrarCliente;
+    private javax.swing.JButton JTBBOSalir;
+    private javax.swing.JTable JTBOMostar;
+    private javax.swing.JTextField JTFBODNI;
+    private javax.swing.JTextField JTFBOMostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabecera(){
+        modelo.addColumn("DNI");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Ciudad");
+        modelo.addColumn("Telefono");
+        
+        JTBOMostar.setModel(modelo);
+        
+    }
+
+
 }
