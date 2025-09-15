@@ -5,6 +5,8 @@
  */
 package trabajopractico5;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author santiago10
@@ -12,6 +14,8 @@ package trabajopractico5;
 public class Principal extends javax.swing.JFrame {
 
     DirectorioTelefonico directorio = new DirectorioTelefonico();
+    
+    public static ArrayList<String> Ciudades = new ArrayList<>();
     /**
      * Creates new form Principal
      */
@@ -87,6 +91,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.setText("Directorio");
 
         jMenuItem3.setText("Buscar Clientes por Ciudad");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Buscar Telefono por Apellido");
@@ -149,6 +158,18 @@ public class Principal extends javax.swing.JFrame {
             Escritorio.add(BCVi);
             Escritorio.moveToFront(BCVi);   // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        BuscarClientePorCiudadVista BCPCV = new BuscarClientePorCiudadVista();
+        BCPCV.setVisible(true);
+        Escritorio.add(BCPCV);
+        Escritorio.moveToFront(BCPCV);   // T
+            
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments

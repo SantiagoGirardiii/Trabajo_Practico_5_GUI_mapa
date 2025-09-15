@@ -5,6 +5,8 @@
  */
 package trabajopractico5;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -41,7 +43,16 @@ public class DirectorioTelefonico {
     
     public void buscarTelefono(){};
     
-    public void buscarContactos(){};
+    public ArrayList<Contacto> buscarContactos(String ciudad){
+        ArrayList<Contacto> lista = new ArrayList<Contacto>();
+        for(Map.Entry<Long,Contacto> entry : ListaDeContactos.entrySet()){
+             
+            if(ciudad == entry.getValue().getCiudad()){
+                lista.add(entry.getValue());
+            }
+        }
+        return lista;
+    };
     
     public void borrarContacto(
             
