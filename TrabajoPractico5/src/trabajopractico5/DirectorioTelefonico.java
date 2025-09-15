@@ -37,11 +37,33 @@ public class DirectorioTelefonico {
         
     };
     
-    public void buscarContacto(){
+    public static ArrayList<Contacto> buscarContacto(String apellido){
+        
+        ArrayList<Contacto> lista = new ArrayList<Contacto>();
+        
+        for(Map.Entry<Long,Contacto> entry : ListaDeContactos.entrySet()){
+            
+            if(apellido.equalsIgnoreCase( entry.getValue().getApellido())){
+                lista.add(entry.getValue());
+            }
+        }
+        
+        
+        return lista;
         
     };
     
-    public void buscarTelefono(){};
+    public  static Long buscarTelefono(int dni){
+        
+        Long aux2 = null;
+           for(Map.Entry<Long,Contacto> entry : ListaDeContactos.entrySet()){
+            
+            if(dni == entry.getValue().getDNI()){
+                aux2 = entry.getKey();
+            }
+        } 
+       return aux2;     
+     };
     
     public ArrayList<Contacto> buscarContactos(String ciudad){
         ArrayList<Contacto> lista = new ArrayList<Contacto>();

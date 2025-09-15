@@ -67,6 +67,11 @@ public class BuscarClientePorCiudadVista extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(JTBCiudad);
 
         jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,9 +120,13 @@ public class BuscarClientePorCiudadVista extends javax.swing.JInternalFrame {
         
         
         String aux = (String) JCBBCiudad.getSelectedItem();
-        JOptionPane.showMessageDialog(this, "evento ocurrido");
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_JCBBCiudadActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

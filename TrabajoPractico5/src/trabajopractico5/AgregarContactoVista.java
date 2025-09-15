@@ -18,8 +18,7 @@ public class AgregarContactoVista extends javax.swing.JInternalFrame {
      */
     public AgregarContactoVista() {
         initComponents();
-         JCCiudad.addItem("San Luis");
-         JCCiudad.addItem("Justo Daract");
+        llenarCiudad();
     }
 
     /**
@@ -234,4 +233,11 @@ public class AgregarContactoVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
+
+    public void llenarCiudad(){
+        for(String aux : Principal.Ciudades){
+            JCCiudad.addItem(aux);
+        }
+    }    
+    
 }

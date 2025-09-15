@@ -6,6 +6,7 @@
 package trabajopractico5;
 
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,6 +17,8 @@ public class Principal extends javax.swing.JFrame {
     DirectorioTelefonico directorio = new DirectorioTelefonico();
     
     public static ArrayList<String> Ciudades = new ArrayList<>();
+    
+   
     /**
      * Creates new form Principal
      */
@@ -42,6 +45,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,11 +103,25 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Buscar Telefono por Apellido");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Ciudades");
+
+        jMenuItem5.setText("AgregarCiudad");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
         jMenuBar1.add(jMenu3);
 
         jMenu6.setText("Salir");
@@ -171,6 +189,29 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+            
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        AgregarCiudadVista ACiuV = new AgregarCiudadVista();
+        ACiuV.setVisible(true);
+        Escritorio.add(ACiuV);
+        Escritorio.moveToFront(ACiuV);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+            
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        BuscarTelefonoPorApellido BTPA = new BuscarTelefonoPorApellido();
+        BTPA.setVisible(true);
+        Escritorio.add(BTPA);
+        Escritorio.moveToFront(BTPA);
+            
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -218,5 +259,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
+
+
+
 }
