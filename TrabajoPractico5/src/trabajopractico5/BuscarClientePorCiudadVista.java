@@ -5,6 +5,8 @@
  */
 package trabajopractico5;
 
+import java.util.Map;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 public class BuscarClientePorCiudadVista extends javax.swing.JInternalFrame {
     
     private DefaultTableModel modelo = new DefaultTableModel();
+    
+    DefaultListModel<String> modelo1 = new DefaultListModel<>();
 
     /**
      * Creates new form BuscarClientePorCiudadVista
@@ -47,6 +51,11 @@ public class BuscarClientePorCiudadVista extends javax.swing.JInternalFrame {
         jLabel2.setText("Ciudades");
 
         JCBBCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "\" \"" }));
+        JCBBCiudad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JCBBCiudadItemStateChanged(evt);
+            }
+        });
         JCBBCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCBBCiudadActionPerformed(evt);
@@ -121,12 +130,36 @@ public class BuscarClientePorCiudadVista extends javax.swing.JInternalFrame {
         
         String aux = (String) JCBBCiudad.getSelectedItem();
         
+        
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_JCBBCiudadActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void JCBBCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JCBBCiudadItemStateChanged
+        
+        modelo.setRowCount(0);
+        
+        String aux = JCBBCiudad.getActionCommand();
+        
+        
+        
+        
+       for(Contacto c : DirectorioTelefonico.buscarContactos(aux)){
+           modelo.addRow(new Object[]{
+               c.getDNI(),
+               c.getApellido(),
+               c.getNombre(),
+               c.getDireccion(),
+               c.getCiudad(),
+               DirectorioTelefonico.buscarTelefono(c.getDNI())
+           });
+       }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCBBCiudadItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -159,5 +192,7 @@ public class BuscarClientePorCiudadVista extends javax.swing.JInternalFrame {
         
         
     }
+    
+    
 
 }

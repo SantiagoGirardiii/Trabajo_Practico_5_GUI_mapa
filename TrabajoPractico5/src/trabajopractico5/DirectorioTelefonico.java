@@ -8,6 +8,7 @@ package trabajopractico5;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,7 @@ public class DirectorioTelefonico {
         
         Contacto contacto = new Contacto(dni,nombre,ciudad,direccion,apellido);
         ListaDeContactos.put(numero, contacto);
+        JOptionPane.showMessageDialog(null, "Contacto cargado");
         
     };
     
@@ -44,6 +46,23 @@ public class DirectorioTelefonico {
         for(Map.Entry<Long,Contacto> entry : ListaDeContactos.entrySet()){
             
             if(apellido.equalsIgnoreCase( entry.getValue().getApellido())){
+                lista.add(entry.getValue());
+            }
+        }
+        
+        
+        return lista;
+        
+    };
+    
+    
+    public static ArrayList<Contacto> buscarContacto(int dni){
+        
+        ArrayList<Contacto> lista = new ArrayList<Contacto>();
+        
+        for(Map.Entry<Long,Contacto> entry : ListaDeContactos.entrySet()){
+            
+            if(dni == entry.getValue().getDNI()){
                 lista.add(entry.getValue());
             }
         }
@@ -65,7 +84,7 @@ public class DirectorioTelefonico {
        return aux2;     
      };
     
-    public ArrayList<Contacto> buscarContactos(String ciudad){
+    public  static ArrayList<Contacto> buscarContactos(String ciudad){
         ArrayList<Contacto> lista = new ArrayList<Contacto>();
         for(Map.Entry<Long,Contacto> entry : ListaDeContactos.entrySet()){
              
@@ -76,11 +95,12 @@ public class DirectorioTelefonico {
         return lista;
     };
     
-    public void borrarContacto(
-            
-            
-            
-            
-    ){};
+    public static void borrarContacto(int dni){
+        Long aux = buscarTelefono(dni);
+        
+        ListaDeContactos.remove(aux);
+        JOptionPane.showMessageDialog(null, " contacto borrado");
+        
+    };
     
 }

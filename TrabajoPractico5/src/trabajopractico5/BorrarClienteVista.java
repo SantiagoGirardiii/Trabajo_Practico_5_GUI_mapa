@@ -6,6 +6,7 @@
 package trabajopractico5;
 
 import java.util.Map;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 public class BorrarClienteVista extends javax.swing.JInternalFrame {
     
     private DefaultTableModel modelo = new DefaultTableModel();
+    
+    DefaultListModel<String> modelo1 = new DefaultListModel<>();
 
     /**
      * Creates new form BorrarClienteVista
@@ -23,6 +26,7 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
     public BorrarClienteVista() {
         initComponents();
         armarCabecera();
+        llenarListaDni();
     }
 
     /**
@@ -39,11 +43,12 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         JTFBODNI = new javax.swing.JTextField();
-        JTFBOMostrar = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTBOMostar = new javax.swing.JTable();
         JBBorrarCliente = new javax.swing.JButton();
         JTBBOSalir = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -61,13 +66,6 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
         JTFBODNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTFBODNIActionPerformed(evt);
-            }
-        });
-
-        JTFBOMostrar.setEditable(false);
-        JTFBOMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JTFBOMostrarMouseClicked(evt);
             }
         });
 
@@ -103,6 +101,13 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jList1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,9 +118,9 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JTFBOMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(JTFBODNI))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JTFBODNI, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 8, Short.MAX_VALUE))
@@ -135,14 +140,15 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(JTFBODNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JTFBOMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(JTFBODNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBBorrarCliente)
                     .addComponent(JTBBOSalir))
@@ -158,18 +164,18 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
 
     private void JTFBODNICaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_JTFBODNICaretUpdate
             
-            String auxDni = JTFBODNI.getText();
+            //String auxDni = JTFBODNI.getText();
             
-            if(!auxDni.isEmpty()){
-                for(Map.Entry<Long,Contacto> entry : DirectorioTelefonico.ListaDeContactos.entrySet() ){
-                    if(String.valueOf(entry.getValue().getDNI()).startsWith(auxDni)){
-                      JTFBOMostrar.setText(String.valueOf(entry.getValue().getDNI()));
-                      break;
-                    }
-                } 
-            }else{
-                JTFBOMostrar.setText("");
-            }
+            //if(!auxDni.isEmpty()){
+            //    for(Map.Entry<Long,Contacto> entry : DirectorioTelefonico.ListaDeContactos.entrySet() ){
+            //        if(String.valueOf(entry.getValue().getDNI()).startsWith(auxDni)){
+            //          JTFBOMostrar.setText(String.valueOf(entry.getValue().getDNI()));
+            //          break;
+            //        }
+            //    } 
+            //}else{
+            //    JTFBOMostrar.setText("");
+            //}
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JTFBODNICaretUpdate
@@ -178,30 +184,19 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
                 // TODO add your handling code here:
     }//GEN-LAST:event_JTBOMostarMouseClicked
 
-    private void JTFBOMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTFBOMostrarMouseClicked
-                
-            int auxDni = Integer.parseInt(JTFBODNI.getText());
-            
-            for(Map.Entry<Long,Contacto> entry : DirectorioTelefonico.ListaDeContactos.entrySet()){
-                if(auxDni == entry.getValue().getDNI()){
-                    modelo.addRow(new Object[]{entry.getValue().getDNI(),entry.getValue().getApellido(),
-                        entry.getValue().getNombre(),entry.getValue().getDireccion(),entry.getValue().getDireccion()
-                            ,entry.getKey()});
-                }
-            }
-            
-
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTFBOMostrarMouseClicked
-
     private void JBBorrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBBorrarClienteActionPerformed
+                
+        int aux = Integer.parseInt(JTFBODNI.getText());
+        
+        DirectorioTelefonico.borrarContacto(aux);
+        
+        modelo.setRowCount(0);
+        modelo1.clear();
+           // Long auxNumero = (Long) JTBOMostar.getValueAt(0, 5);
             
-            Long auxNumero = (Long) JTBOMostar.getValueAt(0, 5);
+           // DirectorioTelefonico.ListaDeContactos.remove(auxNumero);
             
-            DirectorioTelefonico.ListaDeContactos.remove(auxNumero);
-            
-            JOptionPane.showMessageDialog(this, "Elemento Eliminado");
+           // JOptionPane.showMessageDialog(this, "Elemento Eliminado");
                 // TODO add your handling code here:
     }//GEN-LAST:event_JBBorrarClienteActionPerformed
 
@@ -209,17 +204,42 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
         dispose();                    // TODO add your handling code here:
     }//GEN-LAST:event_JTBBOSalirActionPerformed
 
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        
+        
+        String aux = jList1.getSelectedValue();
+        
+        JTFBODNI.setText(aux);
+        
+         modelo.setRowCount(0);
+        
+        if(aux != null){
+       for(Contacto c : DirectorioTelefonico.buscarContacto(Integer.parseInt(aux))){
+           modelo.addRow(new Object[]{
+               c.getDNI(),
+               c.getApellido(),
+               c.getNombre(),
+               c.getDireccion(),
+               c.getCiudad(),
+               DirectorioTelefonico.buscarTelefono(c.getDNI())
+           });
+       }
+       } 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jList1ValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBBorrarCliente;
     private javax.swing.JButton JTBBOSalir;
     private javax.swing.JTable JTBOMostar;
     private javax.swing.JTextField JTFBODNI;
-    private javax.swing.JTextField JTFBOMostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 
@@ -235,5 +255,12 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
         
     }
 
-
+    private void llenarListaDni(){
+         jList1.setModel(modelo1);
+         for(Map.Entry<Long,Contacto> entry : DirectorioTelefonico.ListaDeContactos.entrySet()){
+             modelo1.addElement(String.valueOf(entry.getValue().getDNI()));
+         }
+         
+     }
+        
 }

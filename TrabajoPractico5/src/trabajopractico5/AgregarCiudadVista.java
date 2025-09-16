@@ -5,6 +5,8 @@
  */
 package trabajopractico5;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author santiago10
@@ -88,7 +90,13 @@ public class AgregarCiudadVista extends javax.swing.JInternalFrame {
             
         String aux = jTextField1.getText();
         
+        try{
         Principal.Ciudades.add(aux);
+        }catch(Exception a){
+            JOptionPane.showMessageDialog(this, "Error de carga");
+        }
+        
+        JOptionPane.showMessageDialog(this, "Ciudad cargada");
         
         jTextField1.setText("");
         
