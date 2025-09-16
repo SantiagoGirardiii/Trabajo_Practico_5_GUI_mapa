@@ -126,9 +126,27 @@ public class BuscarClientePorCiudadVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JCBBCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBBCiudadActionPerformed
-        
-        
+    
+        //JOptionPane.showMessageDialog(this, "evento uno ocurrido");
+        modelo.setRowCount(0);
+
+        // Obtengo la ciudad seleccionada del combo
         String aux = (String) JCBBCiudad.getSelectedItem();
+        
+        JOptionPane.showMessageDialog(this, aux);
+
+        // Recorro los contactos encontrados en esa ciudad
+        for (Contacto c : DirectorioTelefonico.buscarContactos(aux)) {
+            modelo.addRow(new Object[]{
+                c.getDNI(),
+                c.getApellido(),
+                c.getNombre(),
+                c.getDireccion(),
+                c.getCiudad(),
+                DirectorioTelefonico.buscarTelefonoPorDni(c.getDNI())
+            });
+        }
+        
         
         
         
@@ -140,24 +158,43 @@ public class BuscarClientePorCiudadVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JCBBCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JCBBCiudadItemStateChanged
-        
+     /*   JOptionPane.showMessageDialog(this, "evento 2 ocurrido");
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+        // Limpio la tabla antes de cargar nuevos resultados
         modelo.setRowCount(0);
+
+        // Obtengo la ciudad seleccionada del combo
+        String aux = (String) JCBBCiudad.getSelectedItem();
+
+        // Recorro los contactos encontrados en esa ciudad
+        for (Contacto c : DirectorioTelefonico.buscarContactoPorApellido(aux)) {
+            modelo.addRow(new Object[]{
+                c.getDNI(),
+                c.getApellido(),
+                c.getNombre(),
+                c.getDireccion(),
+                c.getCiudad(),
+                DirectorioTelefonico.buscarTelefonoPorDni(c.getDNI())
+            });
+        }
+    }
+        //modelo.setRowCount(0);
         
-        String aux = JCBBCiudad.getActionCommand();
+        //String aux =(String) JCBBCiudad.getSelectedItem();
+        
+       */ 
         
         
-        
-        
-       for(Contacto c : DirectorioTelefonico.buscarContactos(aux)){
-           modelo.addRow(new Object[]{
-               c.getDNI(),
-               c.getApellido(),
-               c.getNombre(),
-               c.getDireccion(),
-               c.getCiudad(),
-               DirectorioTelefonico.buscarTelefono(c.getDNI())
-           });
-       }
+       //for(Contacto c : DirectorioTelefonico.buscarContactos(aux)){
+         //  modelo.addRow(new Object[]{
+            //   c.getDNI(),
+            //   c.getApellido(),
+             //  c.getNombre(),
+             //  c.getDireccion(),
+             //  c.getCiudad(),
+           //    DirectorioTelefonico.buscarTelefono(c.getDNI())
+         //  });
+       //}
         // TODO add your handling code here:
     }//GEN-LAST:event_JCBBCiudadItemStateChanged
 

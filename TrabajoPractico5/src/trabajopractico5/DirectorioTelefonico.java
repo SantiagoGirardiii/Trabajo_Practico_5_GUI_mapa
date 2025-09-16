@@ -31,7 +31,7 @@ public class DirectorioTelefonico {
     
     
     
-    public void agregarContacto(int dni,String nombre,String ciudad,String direccion,Long numero,String apellido){
+    public  static void agregarContacto(int dni,String nombre,String ciudad,String direccion,Long numero,String apellido){
         
         Contacto contacto = new Contacto(dni,nombre,ciudad,direccion,apellido);
         ListaDeContactos.put(numero, contacto);
@@ -39,7 +39,7 @@ public class DirectorioTelefonico {
         
     };
     
-    public static ArrayList<Contacto> buscarContacto(String apellido){
+    public static ArrayList<Contacto> buscarContactoPorApellido(String apellido){
         
         ArrayList<Contacto> lista = new ArrayList<Contacto>();
         
@@ -72,7 +72,7 @@ public class DirectorioTelefonico {
         
     };
     
-    public  static Long buscarTelefono(int dni){
+    public static Long buscarTelefonoPorDni(int dni){
         
         Long aux2 = null;
            for(Map.Entry<Long,Contacto> entry : ListaDeContactos.entrySet()){
@@ -84,11 +84,11 @@ public class DirectorioTelefonico {
        return aux2;     
      };
     
-    public  static ArrayList<Contacto> buscarContactos(String ciudad){
+    public static ArrayList<Contacto> buscarContactos(String ciudad){
         ArrayList<Contacto> lista = new ArrayList<Contacto>();
         for(Map.Entry<Long,Contacto> entry : ListaDeContactos.entrySet()){
              
-            if(ciudad == entry.getValue().getCiudad()){
+            if(ciudad.equalsIgnoreCase(entry.getValue().getCiudad())){
                 lista.add(entry.getValue());
             }
         }
@@ -96,7 +96,7 @@ public class DirectorioTelefonico {
     };
     
     public static void borrarContacto(int dni){
-        Long aux = buscarTelefono(dni);
+        Long aux = buscarTelefonoPorDni(dni);
         
         ListaDeContactos.remove(aux);
         JOptionPane.showMessageDialog(null, " contacto borrado");

@@ -144,14 +144,14 @@ public class BuscarTelefonoPorApellido extends javax.swing.JInternalFrame {
         String aux = jTextField1.getText();
         
         
-       for(Contacto c : DirectorioTelefonico.buscarContacto(aux)){
+       for(Contacto c : DirectorioTelefonico.buscarContactoPorApellido(aux)){
            modelo.addRow(new Object[]{
                c.getDNI(),
                c.getApellido(),
                c.getNombre(),
                c.getDireccion(),
                c.getCiudad(),
-               DirectorioTelefonico.buscarTelefono(c.getDNI())
+               DirectorioTelefonico.buscarTelefonoPorDni(c.getDNI())
            });
        }
         

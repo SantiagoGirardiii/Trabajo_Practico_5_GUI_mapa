@@ -221,7 +221,7 @@ public class BorrarClienteVista extends javax.swing.JInternalFrame {
                c.getNombre(),
                c.getDireccion(),
                c.getCiudad(),
-               DirectorioTelefonico.buscarTelefono(c.getDNI())
+               DirectorioTelefonico.buscarTelefonoPorDni(c.getDNI())
            });
        }
        } 
