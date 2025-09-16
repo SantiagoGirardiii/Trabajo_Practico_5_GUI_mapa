@@ -219,7 +219,7 @@ public class AgregarContactoVista extends javax.swing.JInternalFrame {
         String auxDomicilio = JTDomicilio.getText();
         Long auxNumero = Long.parseLong(JTTelefono.getText());
         
-        directorio.agregarContacto(auxDni, auxNombre, auxCiudad, auxDomicilio, auxNumero,auxApellido);
+        DirectorioTelefonico.agregarContacto(auxDni, auxNombre, auxCiudad, auxDomicilio, auxNumero,auxApellido);
         }catch(Exception a){
             JOptionPane.showMessageDialog(this,"Error de carga");
         }
